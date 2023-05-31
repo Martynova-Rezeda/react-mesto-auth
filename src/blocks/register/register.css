@@ -1,0 +1,12 @@
+.register {
+  max-width: 100%;
+  min-width: 320px;
+  background: #000000;
+  margin: 60px auto 80px;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #ffffff;
+}
