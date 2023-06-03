@@ -1,27 +1,28 @@
-import React from 'react';
-//import { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Header from './Header';
-//import useForm from '../hooks/useForm';
 
-const Register = () => {
-  //const [formValue, handleChange] = useState({
-  //  username: '',
-  //  password: '',
-  // });
+const Register = ({ onRegistationSubmit, isOpen }) => {
+  const [formValue, setFormValue] = useState({
+    password: '',
+    email: '',
+  });
 
-  //const navigate = useNavigate();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValue({ ...formValue, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { password, email } = formValue;
+    onRegistationSubmit(password, email);
+  };
+  console.log(formValue.email);
 
   return (
     <>
-      <Header>
-        <Link to={'/sign-in'} className="header__link">
-          Войти
-        </Link>
-      </Header>
-
       <div className="register">
-        <form className="register__form">
+        <form className="register__form" onSubmit={handleSubmit}>
           <h1 className="register__header">Регистрация</h1>
           <input
             className="register__field"
@@ -29,6 +30,8 @@ const Register = () => {
             name="email"
             type="email"
             placeholder="Email"
+            value={formValue.email}
+            onChange={handleChange}
           />
           <input
             className="register__field"
@@ -36,6 +39,8 @@ const Register = () => {
             name="password"
             type="password"
             placeholder="Пароль"
+            value={formValue.password}
+            onChange={handleChange}
           />
           <div className="register__button-container">
             <button type="submit" className="register__button">

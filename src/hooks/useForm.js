@@ -1,15 +1,15 @@
 import { useState } from 'react';
 
-const useForm = (inputValues = {}) => {
-  const [formValues, setFormValues] = useState({ inputValues });
+const useForm = () => {
+  const [values, setValues] = useState({});
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormValues({
-      ...formValues,
+    setValues({
+      ...values,
       [name]: value,
     });
   };
-  return { formValues, handleChange };
+  return { values, handleChange };
 };
 export default useForm;

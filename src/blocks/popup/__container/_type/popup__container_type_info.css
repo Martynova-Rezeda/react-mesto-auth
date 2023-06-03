@@ -1,0 +1,11 @@
+.popup__container_type_info {
+  background-color: #fff;
+  max-width: 430px;
+  min-height: 330px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

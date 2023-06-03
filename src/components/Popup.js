@@ -24,12 +24,10 @@ function Popup({ isOpen, onClose, children, name }) {
 
   return (
     <div
-      className={`popup popup-${name} ${isOpen ? 'popup_opened' : ''}`}
+      className={`popup popup_${name} ${isOpen ? 'popup_opened' : ''}`}
       onClick={handleOverlay}
     >
-      <div
-        className={`popup__${name === 'card' ? 'container-card' : 'container'}`}
-      >
+      <div className={`popup__container popup__container_type_${name}`}>
         <button
           className="popup__button-close"
           type="button"

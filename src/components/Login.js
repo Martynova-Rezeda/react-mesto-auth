@@ -1,17 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Header from './Header';
 
-const Login = () => {
+import { useState } from 'react';
+
+const Login = ({ onLoginSubmit }) => {
+  const [formValue, setFormValue] = useState({
+    password: '',
+    email: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValue({ ...formValue, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { password, email } = formValue;
+    onLoginSubmit(password, email);
+  };
+  console.log(formValue.email);
   return (
     <>
-      <Header>
-        <Link to={'/sign-up'} className="header__link">
-          Регистрация
-        </Link>
-      </Header>
       <div className="login">
-        <form className="login__form">
+        <form className="login__form" onSubmit={handleSubmit}>
           <h1 className="login__header">Вход</h1>
           <input
             className="login__field"
@@ -19,6 +30,8 @@ const Login = () => {
             name="email"
             type="email"
             placeholder="Email"
+            onChange={handleChange}
+            value={formValue.email}
           />
           <input
             className="login__field"
@@ -26,6 +39,8 @@ const Login = () => {
             name="password"
             type="password"
             placeholder="Пароль"
+            onChange={handleChange}
+            value={formValue.password}
           />
           <div className="login__button-container">
             <button type="submit" className="login__button">
