@@ -6,3 +6,9 @@
   color: #ffffff;
   margin: 0 24px 0 0;
 }
+
+@media screen and (max-width: 649px) and (min-width: 320px) {
+  .menu__email {
+    margin: 0;
+  }
+}

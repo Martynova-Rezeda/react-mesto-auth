@@ -2,11 +2,11 @@ import React from 'react';
 import logoPath from '../images/logo.svg';
 import { Route, Routes, NavLink } from 'react-router-dom';
 
-function Header({ userEmail, onLogout }) {
-  console.log(userEmail);
+function Header({ userEmail, onSignOut }) {
   return (
     <header className="header">
       <img src={logoPath} alt="Логотип сайта" className="header__logo" />
+
       <nav className="menu">
         <Routes>
           <Route
@@ -33,9 +33,9 @@ function Header({ userEmail, onLogout }) {
               <div className="menu__link-block">
                 <p className="menu__email">{userEmail}</p>
                 <NavLink
-                  to="/sign-up"
+                  to="/sign-in"
                   className="menu__link"
-                  onClick={onLogout}
+                  onClick={onSignOut}
                 >
                   Выйти
                 </NavLink>
@@ -46,7 +46,7 @@ function Header({ userEmail, onLogout }) {
           <Route
             path="/*"
             element={
-              <NavLink to="/sign-in" className="menu__link" onClick={onLogout}>
+              <NavLink to="/sign-in" className="menu__link" onClick={onSignOut}>
                 Выйти
               </NavLink>
             }

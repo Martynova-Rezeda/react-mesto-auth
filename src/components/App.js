@@ -11,7 +11,7 @@ import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
 import DeletePopup from './DeletePopup';
 import ProtectedRoute from './ProtectedRoute';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import Register from './Register';
 import Login from './Login';
 import { register, login, checkToken } from '../utils/auth';
@@ -223,11 +223,11 @@ function App() {
     }
   }, []);
 
-  const handleLogoutSubmit = () => {
+  const handleLogOutSubmit = () => {
     localStorage.removeItem('token');
     setLoggedIn(false);
     setUserEmail('');
-    navigate('/sign-up', { replace: true });
+    navigate('/sign-in', { replace: true });
   };
 
   return (
@@ -236,7 +236,7 @@ function App() {
         <Header
           loggedIn={loggedIn}
           userEmail={userEmail}
-          onLogout={handleLogoutSubmit}
+          onSignOut={handleLogOutSubmit}
         />
         <Routes>
           <Route
@@ -263,6 +263,16 @@ function App() {
             path="/sign-in"
             element={
               <Login onLoginSubmit={handleLoginSubmit} loggedIn={loggedIn} />
+            }
+          />
+          <Route
+            path="*"
+            element={
+              loggedIn ? (
+                <Navigate to="/" />
+              ) : (
+                <Navigate to="/sign-in" replace />
+              )
             }
           />
         </Routes>
